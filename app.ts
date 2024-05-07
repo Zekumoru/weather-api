@@ -4,6 +4,7 @@ import createError from 'http-errors';
 import cors from 'cors';
 import indexRouter from './routes';
 import weatherRouter from './routes/weather';
+import apiKeyHandler from './middlewares/apiKeyHandler';
 
 const app = express();
 
@@ -18,7 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // set routers
 app.use('/', indexRouter);
-app.use('/weather', weatherRouter);
+app.use('/weather', apiKeyHandler, weatherRouter);
 app.use((req, res, next) => next(createError(500)));
 app.use(errorHandler);
 
