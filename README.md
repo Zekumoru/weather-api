@@ -2,6 +2,22 @@
 
 This is a simple Express server that demonstrates the use of API and open data.
 
+## Usage
+
+### weather
+
+To get weather data on a specific location, use the following route:
+
+```url
+https://weather-api.zekumoru.com/weather?city={city name}
+```
+
+An example to get current weather data on Milan:
+
+```url
+https://weather-api.zekumoru.com/weather?city=Milan,IT
+```
+
 ## .env format
 
 The following code below is an example of this project's `.env` file.
