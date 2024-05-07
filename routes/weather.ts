@@ -1,7 +1,7 @@
 import axios from 'axios';
 import express from 'express';
 import asyncHandler from 'express-async-handler';
-import { OpenWeatherGeoData } from '../types/open-weather';
+import getGeoDataArray from '../functions/getGeoDataArray';
 
 const weatherRouter = express.Router();
 
@@ -9,16 +9,12 @@ weatherRouter.use(
   '/',
   asyncHandler(async (req, res) => {
     // get location lat and lon
-    const geoDataArray = (
-      await axios.get(`http://api.openweathermap.org/geo/1.0/direct`, {
-        params: {
-          appid: req.apiKey,
-          q: req.query.city,
-        },
+    const { lat, lon } = (
+      await getGeoDataArray({
+        apiKey: req.apiKey,
+        query: req.query.city as string,
       })
-    ).data as OpenWeatherGeoData[];
-
-    const { lat, lon } = geoDataArray[0];
+    )[0];
 
     // get weather from lat and lon
     const weatherData = (
