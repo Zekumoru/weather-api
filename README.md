@@ -9,13 +9,17 @@ This is a simple Express server that demonstrates the use of API and open data.
 To get weather data on a specific location, use the following route:
 
 ```url
-https://weather-api.zekumoru.com/weather?city={city name}
+https://weather-api.zekumoru.com/weather?city={city name}&units={units}
 ```
+
+`city`: The name of the location or city. Separate with commas the name of the city, its state code, and/or its country code.
+
+`units`: (optional) Units of measurement. standard (Kelvin), metric (Celsius) and imperial (Fahrenheit) units are available. Default: standard.
 
 An example to get current weather data on Milan:
 
 ```url
-https://weather-api.zekumoru.com/weather?city=Milan,IT
+https://weather-api.zekumoru.com/weather?city=Milan,IT&units=metric
 ```
 
 ## .env format
